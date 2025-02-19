@@ -2,65 +2,53 @@
 //customer. If they are a residential customer you will accept their name and phone number. If they are a business
 // customer you will accept their business name, contact name, and phone number.
 
-fun businessCustomer(businessName: String, contactName: String, businessPhoneNumber: Int): String {
-    return "$businessName, $contactName, $businessPhoneNumber"
+fun business(businessName: String, businessContact: String, businessPhone: Int): String {
+    return "$businessName $businessContact, $businessPhone"
+
 }
 
-fun residentialCustomer(name: String, phoneNumber: Int): String {
-    return "$name, $phoneNumber"
+fun customer(name: String, phone: Int): String {
+    return "$name $phone"
 }
-
 
 fun main() {
     var looping = true
     while (looping) {
         println("\nPlease enter the number of your choice: ")
-        println("1. Business Customer")
-        println("2. Residential Customer")
+        println("1. Business customer")
+        println("2. Residential customer")
         println("3. Exit")
 
-        var choice = readLine()?.toIntOrNull()
+        when (readLine()?.toIntOrNull()) {
+            1 -> {
+                println("Please enter the number of your business name:")
+                var businessName = readLine().toString()
 
-        if (choice == 1) {    //for business customer
+                println("Please enter contact name: ")
+                var businessContact = readLine().toString()
 
-            println("Please enter your business name: ")
-            var businessName = readLine().toString()
+                println("Please enter phone number: ")
+                var businessPhone  = readLine().toString().toInt()
+                println("\nBusiness Contact details: \n$businessName, $businessContact, $businessPhone")
 
-            println("Please enter the contact name: ")
-            var contactName = readLine().toString()
-
-            println("Please enter the phone number: ")
-            var businessPhoneNumber = readLine()?.toIntOrNull()
-
-            if (businessPhoneNumber != null) {
-                var businessInfo = businessCustomer(businessName, contactName, businessPhoneNumber)
-                println("\nCustomer Information: ")
-                println(businessInfo)
-            } else {
-                println("Please enter valid information")
             }
-        } else if (choice==2) {    // Residential customer
-            println("Please enter your name: ")
-            var name = readLine().toString()
 
-            println("Please enter your phone number: ")
-            var phoneNumber = readLine()?.toIntOrNull()
+            2 -> {
+                println("Please enter your name:")
+                val name = readLine().toString()
 
-            if (phoneNumber != null) {
-                var residentialInfo = residentialCustomer(name, phoneNumber)
-                println("\nCustomer Information: ")
-                println(residentialInfo)
-            } else {
-                println("Please enter valid info")
+                println("Please enter your phone number:")
+                val phone = readLine().toString()
+                println("\nResidential customer contact details: \n$name, $phone ")
             }
-        } else if (choice==3) {
-            println("K bye!")
-            looping = false
-        } else {
-            println("Invalid choice! Please enter 1, 2, OR 3.")
+
+            3 -> {
+                println("K BYE!")
+                looping = false
+            }
+            else -> println("Invalid input. Please enter 1, 2, 0r 3. ")
         }
     }
-
 }
 
 //EXAMPLE FROM LECTURE
